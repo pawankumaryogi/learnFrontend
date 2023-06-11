@@ -31,7 +31,7 @@ function App() {
       return;
     }
 
-    axios.post(`https://unstop-backend-npci.onrender.com/reserve`, { "No_of_Seats" : count })
+    axios.post(`https://unstop-backend-npci.onrender.com/seats/reserve`, { "No_of_Seats" : count })
     .then((res) => {
       setBooked(res.data);
       toast({
