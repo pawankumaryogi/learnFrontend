@@ -15,7 +15,7 @@ function App() {
   });
 
   const getSeats = () => {
-    axios.get(`http://localhost:8080/seats`)
+    axios.get(`https://unstop-backend-npci.onrender.com/seats`)
     .then((res) => setSeats(res.data))
     .catch((error) => console.log(error));
   };
@@ -31,7 +31,7 @@ function App() {
       return;
     }
 
-    axios.post(`http://localhost:8080/seats/reserve`, { "No_of_Seats" : count })
+    axios.post(`https://unstop-backend-npci.onrender.com/reserve`, { "No_of_Seats" : count })
     .then((res) => {
       setBooked(res.data);
       toast({
@@ -47,7 +47,7 @@ function App() {
 
 
   const handleReset = () => {
-    axios.patch(`http://localhost:8080/seats/reset`)
+    axios.patch(`https://unstop-backend-npci.onrender.com/seats/reset`)
     .then((res) => console.log(res))
     .catch((error) => console.log(error));
     toast({
