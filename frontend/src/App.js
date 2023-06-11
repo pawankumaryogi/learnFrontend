@@ -31,7 +31,7 @@ function App() {
       return;
     }
 
-    axios.post(`https://unstop-backend-npci.onrender.com/seats/reserve`, { "No_of_Seats" : count })
+    axios.post(`https://unstop-backend-npci.onrender.com/seats/reserve`, { "No_of_Seats" : Number(count) })
     .then((res) => {
       setBooked(res.data);
       toast({
@@ -42,7 +42,15 @@ function App() {
       });
       getSeats();
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      console.log(error);
+      toast({
+        title : error.response.data.message,
+        status : "error",
+        position : "top",
+        isClosable : true
+      })
+    });
   };
 
 
