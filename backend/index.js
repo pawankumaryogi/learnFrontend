@@ -19,11 +19,11 @@ app.use("/seats", seatRouter);
 //     seat.save();
 // }
 
-app.listen(8080, async() => {
+app.listen(process.env.Port, async() => {
     try {
         await connection;
         console.log("App is connected to DB");
-        console.log(`Server is running on port 8080`);
+        console.log(`Server is running on port ${process.env.Port}`);
     } catch (error) {
         console.log(error);
     }
