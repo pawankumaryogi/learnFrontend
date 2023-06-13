@@ -5,6 +5,7 @@ import { Box, Button, Flex, Grid, Heading, Input, Text, useToast } from "@chakra
 import { MdChair } from "react-icons/md";
 
 function App() {
+  const [loading, setLoading] = useState(true);
   const [seats, setSeats] = useState([]);
   const [count, setCount] = useState(0);
   const [booked, setBooked] = useState([]);
@@ -16,7 +17,10 @@ function App() {
 
   const getSeats = () => {
     axios.get(`https://unstop-backend-npci.onrender.com/seats`)
-    .then((res) => setSeats(res.data))
+    .then((res) => {
+      setLoading(false);
+      setSeats(res.data)
+    })
     .catch((error) => console.log(error));
   };
 
@@ -66,6 +70,15 @@ function App() {
     });
   }
 
+  if (loading){
+    return (
+      <Flex h={"100vh"} w={"100vw"} justifyContent={"center"} alignItems={"center"} flexDir={"column"}>
+        <Heading>Wait until it Loads.</Heading>
+        <Heading>Refresh the Webpage.</Heading>
+      </Flex>
+    )
+  }
+
   return (
     <div style={{backgroundColor : "#245db0", display: "flex", padding: "10px", alignItems: "center", justifyContent: "center"}}>
       {/* Seat Layout */}
@@ -74,7 +87,7 @@ function App() {
         <Grid w={{base: "80%", md: "30%", lg: "30%"}} templateColumns={"repeat(7,1fr)"} bgColor={"white"} p={"10px"} borderRadius={"20px"} boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px;"}>
           {seats.map((e) => 
             <Box key={e._id} align="center">
-              <MdChair color={e.isBooked ? "green" : null} size={"2vw"} />
+              <MdChair color={e.isBooked ? "green" : null} size={"25px"} />
               <Text fontSize={"2vh"} mt={"-5px"}>{e.seatNumber}</Text>
             </Box>
           )}
@@ -84,11 +97,11 @@ function App() {
 
         <Flex w={{base: "60%", md: "20%" ,lg: "20%"}} flexDir={"column"} justifyContent={"center"} alignItems={"center"} bgColor={"white"} p={"10px"} borderRadius={"20px"} boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px;"}>
           <Flex alignItems={"center"} gap={"10px"}>
-            <MdChair size={"2vw"}/>
+            <MdChair size={"25px"}/>
             <Text>Available</Text>
           </Flex>
           <Flex alignItems={"center"} gap={"10px"}>
-            <MdChair color='green' size={"2vw"}/>
+            <MdChair color='green' size={"25px"}/>
             <Text>Reserved</Text>
           </Flex>
         </Flex>
