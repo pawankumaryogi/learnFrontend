@@ -5,6 +5,9 @@ This application is a seat booking application. There are 80 seats in total, wit
 [Frontend](https://unstop-assignment-delta.vercel.app/) - Deployed Link <br />
 [Backend](https://unstop-backend-npci.onrender.com/) - Deployed Link
 
+### NOTE
+Once application is open please wait till 30 sec to 1 min until it loads or please refresh the webpage for 5-6 times.
+
 ## Tech Stack
 - Frontend
   - React.Js
